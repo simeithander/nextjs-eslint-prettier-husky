@@ -1,0 +1,59 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo '🚀 Starting formatting check, syntax problems, typing and build.'
+echo ''
+
+echo '🎨 Formatting the code...'
+npm run format ||
+(
+    echo '💥💥💥 Formatting error! 💥💥💥
+    Prettier formatting found errors in your code,
+    check and make changes.';
+    false;
+)
+echo ''
+echo '✅ Formatting finished!'
+echo ''
+# Check Prettier standards
+echo '📝 Check the formatting...'
+npm run check-format ||
+(
+    echo '💥💥💥 Prettier found errors in formatting! 💥💥💥
+    Check the error, fix and commit again';
+    false;
+)
+echo ''
+echo '✅ Formatting with no problems'
+echo ''
+# Check ESLint Standards
+echo '📝 Checking the syntax...'
+npm run check-lint ||
+(
+    echo '💥💥💥 Code with syntax error! 💥💥💥
+    ESLint found syntax errors in your code! Check, fix the errors and commit again.'
+    false; 
+)
+echo '✅ Syntax with no problems'
+echo ''
+# Check tsconfig standards
+echo '📝 Checking types...'
+npm run check-types ||
+(
+    echo '💥💥💥 Code with types errors! 💥💥💥
+    Tsconfig found types erros in your code!, Check, fix the errors and commit again.'
+    false;
+)
+echo '✅ Types with no problems'
+echo ''
+echo '🔨 Starting building...'
+npm run build ||
+(
+    echo '💥💥💥 There was an error building the project 💥💥💥
+    Check the reported errors, fix and commit again. '
+    false;
+)
+echo '✅ Built successfully!'
+echo '✅ Code without formatting, typing, syntax and construction errors!'
+echo '📦️ Local commit done, push remote repository.'
+echo ''

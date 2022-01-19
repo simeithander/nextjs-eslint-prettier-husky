@@ -8,7 +8,7 @@ const Home = () => {
   const [text, setText] = useState<Data>();
 
   const getText = async () => {
-    const res = await fetch(`/api/hello`);
+    const res = await fetch("/api/hello");
     setText(await res.json());
   };
   useEffect(() => {
