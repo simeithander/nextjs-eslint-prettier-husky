@@ -4,8 +4,6 @@
 echo '🚀 Starting formatting check, syntax problems, typing and build.'
 
 echo ''
-echo '✅ Formatting finished!'
-echo ''
 # Check Prettier standards
 echo '📝 Check the formatting...'
 npm run check-format ||
