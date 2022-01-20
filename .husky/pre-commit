@@ -21,6 +21,7 @@ npm run check-format ||
         check and make changes.';
         false;
     )
+    echo '✅ Formatting finished!, check the code and commit again';
     false;
 )
 echo ''
