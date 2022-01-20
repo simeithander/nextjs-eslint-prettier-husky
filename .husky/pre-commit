@@ -2,16 +2,7 @@
 . "$(dirname "$0")/_/husky.sh"
 
 echo '🚀 Starting formatting check, syntax problems, typing and build.'
-echo ''
 
-echo '🎨 Formatting the code...'
-npm run format ||
-(
-    echo '💥💥💥 Formatting error! 💥💥💥
-    Prettier formatting found errors in your code,
-    check and make changes.';
-    false;
-)
 echo ''
 echo '✅ Formatting finished!'
 echo ''
@@ -20,7 +11,16 @@ echo '📝 Check the formatting...'
 npm run check-format ||
 (
     echo '💥💥💥 Prettier found errors in formatting! 💥💥💥
-    Check the error, fix and commit again';
+    Maybe you not run the command "npm run format", i run it for you';
+    echo '';
+    echo '🎨 Formatting the code...';
+    npm run format ||
+    (
+        echo '💥💥💥 Formatting error! 💥💥💥
+        Prettier formatting found errors in your code,
+        check and make changes.';
+        false;
+    )
     false;
 )
 echo ''
